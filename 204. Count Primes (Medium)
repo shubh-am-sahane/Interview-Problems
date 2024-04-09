@@ -23,7 +23,7 @@ public:
       }
 };                                      // time limit exceed in this program (0 <= n <= 5 * 106)
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Sieve Method
+Sieve Method == complexity O(n*log(log n))
 class Solution {
 public:
     int countPrimes(int n) {
