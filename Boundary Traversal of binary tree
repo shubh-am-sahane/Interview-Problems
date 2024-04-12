@@ -1,0 +1,63 @@
+class Solution {
+public:
+    void leftPart(Node *root,vector<int>& ans ){
+        if(root == NULL || (root->left == NULL && root->right == NULL)){
+            return;
+        }
+        ans.push_back(root->data);
+        if(root->left){
+            leftPart(root->left, ans);
+        }
+        else{
+            leftPart(root->right, ans);
+        }
+    }
+    void leafPart(Node *root,vector<int>& ans ){
+        if(root == NULL){
+            return;
+        }
+        if(root->left==NULL && root->right==NULL){
+            ans.push_back(root->data);
+            return;
+        }
+        leafPart(root->left, ans);
+        leafPart(root->right, ans);
+    }
+    void rightPart(Node *root,vector<int>& ans ){
+        if(root == NULL || (root->left == NULL && root->right == NULL)){
+            return;
+        }
+        if(root->right){
+            rightPart(root->right, ans);
+        }
+        else{
+            rightPart(root->left, ans);
+        }
+        ans.push_back(root->data);
+    }
+    
+    
+    vector <int> boundary(Node *root)
+    {
+        //Your code here
+        vector<int> ans;
+        if(root==NULL){
+            return ans;
+        }
+        ans.push_back(root->data);
+        
+        //for getting elements of left part
+        leftPart(root->left,ans);
+        
+        //for getting leaf nodes
+        
+        leafPart(root->left,ans);
+        leafPart(root->right,ans);
+        
+        
+        //for getting right part // niche se upar lana hai // leaf se root tak(except leaf)
+        rightPart(root->right,ans);
+        
+        return ans;
+    }
+};
